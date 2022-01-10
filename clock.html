@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clock</title>
+    <link rel="stylesheet" href="clock.css">
+</head>
+
+<body>
+
+
+    <div class="clock">
+        <div class="clockface">
+            <div class="hand hourHand"></div>
+            <div class="hand minutesHand"></div>
+            <div class="hand secondsHand"></div>
+        </div>
+    </div>
+
+    <script>
+        const secondsHand = document.querySelector('.secondsHand');
+        const minutesHand = document.querySelector('.minutesHand');
+        const hoursHand = document.querySelector('.hourHand');
+
+        function setTime() {
+            const now = new Date();
+            const seconds = now.getSeconds();
+            const secondsDegrees = ((seconds / 60) * 360) + 90;
+            secondsHand.style.transform = `rotate(${secondsDegrees}deg)`;
+
+            const minutes = now.getMinutes();
+            const minutesDegrees = ((minutes / 60) * 360) + ((seconds / 60) * 6) + 90;
+            minutesHand.style.transform = `rotate(${minutesDegrees}deg)`;
+
+            const hours = now.getHours();
+            const hourDegrees = ((hours / 12) * 360) + ((minutes / 60) * 30) + 90;
+            hoursHand.style.transform = `rotate(${hourDegrees}deg)`;
+        }
+        setInterval(setTime, 1000);
+        setTime();
+
+        function getTime() {
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            document.getElementById("time").innerHTML = h + ":" + m + ":" + s;
+        }
+        setInterval(getTime, 1000)
+    </script>
+    <p id="time"></p>
+</body>
+
+
+</html>
